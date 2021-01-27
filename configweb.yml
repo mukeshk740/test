@@ -1,0 +1,19 @@
+- hosts: webserver
+  tasks:
+   - name: installing httpd
+     package:
+       name: "httpd"
+       state: present
+   - name: Writing index file
+     copy:
+       content: "configured web server"
+       dest: "/var/www/html/index.html"
+   - name: Restarting service
+     service:
+        name: httpd
+        state: started
+    
+
+
+     
+          

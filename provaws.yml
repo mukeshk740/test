@@ -1,0 +1,21 @@
+- hosts: localhost
+  vars_files:
+           - secret.yml
+  tasks:
+  - name: "Provisioning EC2 instance"
+    ec2:
+     key_name: "keyforall"
+     instance_type: t2.micro
+     image: ami-04b1ddd35fd71475a
+     wait: yes
+     count: 2
+     instance_tags:
+       name: webserver
+     vpc_subnet_id: subnet-08154ce1d23296f51
+     assign_public_ip: yes
+     group_id: sg-052f3a635a2786b96
+     state: present
+     region: ap-south-1
+     aws_access_key: "{{ key }}"
+     aws_secret_key: "{{ code }}"
+    
